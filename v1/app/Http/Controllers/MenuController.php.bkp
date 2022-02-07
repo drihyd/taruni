@@ -1,0 +1,179 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Menu;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+Use Exception;
+
+class MenuController extends Controller
+{
+    public function index()
+    {
+
+
+
+        $footer_widget=DB::table('menus')->select('menu_column_grid')->distinct()->where("menu_category","footer-widget-1")->orderBy('menu_column_grid')->get(); 
+
+
+      foreach ($footer_widget as $key => $menu) {
+            $footer_widget[$key]->menu_column_grid = DB::table('menus')->select('menus.*')
+            ->where('menus.menu_column_grid', "$menu->menu_column_grid")          
+            ->where('menus.menu_category', "footer-widget-1")
+            ->where('menus.is_active', "Yes")
+            // ->orderBy('menus.menu_sorting', 'DESC')           
+            ->get(); 
+        }
+        
+
+
+        $header_menu=DB::table('menus')->select('menu_column_grid')->distinct()
+        ->where("menu_category","header-menu")
+        ->orderBy('menu_column_grid')
+        ->get();
+        foreach ($header_menu as $key => $menu) {
+            $header_menu[$key]->menu_column_grid = DB::table('menus')->select('menus.*')
+            ->where('menus.menu_column_grid', "$menu->menu_column_grid")          
+            ->where('menus.menu_category', "header-menu")
+            ->where('menus.is_active', "Yes")
+            // ->orderBy('menus.menu_sorting', 'DESC')           
+            ->get(); 
+        }
+
+          
+            $menu_data= DB::table('menus')->get(); 
+            $addlink = url('admin/menu/create');  
+            $pageTitle="Menu";          
+            return view('admin.menus.menu_lists', compact('pageTitle','menu_data','footer_widget','header_menu','addlink'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);    
+               
+    }
+    public function create_menu()
+    {
+        
+            $pageTitle="Add Menu";
+            return view('admin.menus.add_edit_menu',compact('pageTitle'));    
+        
+    }
+
+    public function store_menu(Request $request)
+    {
+         // dd($request);
+            $request->validate([
+            'menu_category' => 'required',
+            'menu_name' => 'required',
+            // 'menu_slug' => 'required|min:1|max:200',
+            // 'menu_url' => 'required|url',
+            // 'menu_sorting'=>'required',
+            // 'menu_column_grid'=>'required',
+            ]);
+
+        
+            
+//            $data=
+//                 [
+//                     "menu_category"=>$request->menu_category,
+//                     "menu_name"=>$request->menu_name??'',
+//                     "is_heading"=>$request->is_heading??'No',
+//                     "menu_url"=>$request->menu_url??'',
+//                     // "menu_sorting"=>$request->menu_sorting??'',
+//                     "menu_column_grid"=>$request->menu_column_grid??'',
+//                     "child_column_grid"=>$request->child_column_grid??'',
+//                     "is_active"=>$request->is_active??'Yes',
+//                     "open_new_tab"=>$request->open_new_tab??'No'                
+//             ]; 
+
+// $userInformation=["id"=>$request->id];
+
+// Menu::updateOrCreate($userInformation,$data);
+
+            Menu::insert([
+            [
+                "menu_category"=>$request->menu_category,
+                    "menu_name"=>$request->menu_name??'',
+                    "is_heading"=>$request->is_heading??'No',
+                    "menu_url"=>$request->menu_url??'',
+                    // "menu_sorting"=>$request->menu_sorting??'',
+                    "menu_column_grid"=>$request->menu_column_grid??'',
+                    "child_column_grid"=>$request->child_column_grid??'',
+                    "is_active"=>$request->is_active??'Yes',
+                    "open_new_tab"=>$request->open_new_tab??'No',
+            ]  
+        ]);
+
+
+            
+            return redirect('admin/menu')->with('success', "Successfully added a Menu details."); 
+        
+        
+    }
+    public function edit_menu($id)    {
+        
+            $menu_data=DB::table('menus')->get()->where("id",$id)->first();
+            $pageTitle="Edit Menu";        
+            return view('admin.menus.add_edit_menu',compact('menu_data','pageTitle'));
+        
+        
+    }
+    public function update_menu(Request $request)
+    {
+        
+        $request->validate([
+            'menu_category' => 'required',
+            'menu_name' => 'required',
+            // 'menu_slug' => 'required|min:1|max:200',
+            // 'menu_url' => 'required|url',
+            // 'menu_sorting'=>'required',
+            // 'menu_column_grid'=>'required',
+        ]);
+   
+
+
+//         $data=
+//                 [
+//                     "menu_category"=>$request->menu_category,
+//                     "menu_name"=>$request->menu_name??'',
+//                     "is_heading"=>$request->is_heading??'No',
+//                     "menu_url"=>$request->menu_url??'',
+//                     // "menu_sorting"=>$request->menu_sorting??'',
+//                     "menu_column_grid"=>$request->menu_column_grid??'',
+//                     "child_column_grid"=>$request->child_column_grid??'',
+//                     "is_active"=>$request->is_active??'Yes',
+//                     "open_new_tab"=>$request->open_new_tab??'No'               
+//             ]; 
+
+// $userInformation=["id"=>$request->id];
+
+// Menu::updateOrCreate($userInformation,$data); 
+Menu::where('id', $request->id)
+            ->update(
+            [
+                
+                "menu_category"=>$request->menu_category,
+                    "menu_name"=>$request->menu_name??'',
+                    "is_heading"=>$request->is_heading??'No',
+                    "menu_url"=>$request->menu_url??'',
+                    // "menu_sorting"=>$request->menu_sorting??'',
+                    "menu_column_grid"=>$request->menu_column_grid??'',
+                    "child_column_grid"=>$request->child_column_grid??'',
+                    "is_active"=>$request->is_active??'Yes',
+                    "open_new_tab"=>$request->open_new_tab??'No',
+            ]
+            );    
+
+
+        return redirect('admin/menu')->with('success', "Successfully update a Menu details.");
+      
+        
+    }
+    public function delete_menu($id)    {
+        
+            $data=DB::table('menus')->where('id',$id)->delete();   
+            return redirect()->back()->with('success','Successfully delete a Menu');
+        
+        
+    }
+}

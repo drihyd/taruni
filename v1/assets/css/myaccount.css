@@ -1,0 +1,333 @@
+.my-account-sec .my-account-area {
+	padding-left: 340px;
+	position: relative;
+	min-height: 645px
+}
+
+@media (max-width:767px) {
+	.my-account-sec .my-account-area {
+		padding-left: 0
+	}
+}
+
+.my-account-sec .my-account-area #account-menu-toggle {
+	display: block;
+	width: 105px;
+	margin: 0 0 15px;
+	display: none;
+	font-size: 12px
+}
+
+.my-account-sec .my-account-area #account-menu-toggle .fa,
+.my-account-sec .my-account-area #account-menu-toggle .glyphicon {
+	margin-right: 6px
+}
+
+@media (max-width:767px) {
+	.my-account-sec .my-account-area #account-menu-toggle {
+		display: block
+	}
+}
+
+.my-account-sec .my-account-area #account-details-area {
+	display: block;
+	/*padding-top: 30px;*/
+	padding-bottom: 15px
+}
+
+#my-account-menu,
+.my-account-menu {
+	display: block;
+	position: absolute;
+	top: 11px;
+	left: -10px;
+	width: 320px;
+	height: 100%;
+	background: #fff;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	border-right: 1px solid #f6f6f6;
+	padding: 30px 21px;
+	padding-left: 15px;
+}
+
+@media (max-width:767px) {
+	#my-account-menu,
+	.my-account-menu {
+		z-index: 11;
+		position: fixed;
+		top: 0px;
+		left: initial;
+		right: -320px;
+		bottom: 0;
+		overflow: auto;
+		margin: 0;
+		padding: 21px
+	}
+	#my-account-menu.show,
+	.my-account-menu.show {
+		right: 0
+	}
+}
+
+#my-account-menu .profile-box,
+.my-account-menu .profile-box {
+	display: block;
+	position: relative;
+	padding-left: 105px;
+	border-bottom: 1px solid #f6f6f6;
+	min-height: 105px
+}
+
+#my-account-menu .profile-box .profile-dp,
+.my-account-menu .profile-box .profile-dp {
+	display: block;
+	position: absolute;
+	left: 10;
+	top: -15px;
+	width: 90px;
+	height: 90px;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%
+}
+
+@media(max-width: 480px){
+    #my-account-menu .profile-box .profile-dp{
+        top: 0;
+    }
+}
+
+#my-account-menu .profile-box .profile-dp img,
+.my-account-menu .profile-box .profile-dp img {
+	width: 100%
+}
+
+#my-account-menu .profile-box .details .name,
+.my-account-menu .profile-box .details .name {
+	font-size: 15px;
+	font-weight: 400;
+	text-transform: uppercase;
+	margin: 9px 0 6px;
+	padding: 0;
+	line-height: 1.5
+}
+
+#my-account-menu .profile-box .details p,
+.my-account-menu .profile-box .details p {
+	font-size: 13px;
+	line-height: 1.4;
+	margin: 0 0 3px
+}
+
+#my-account-menu .account-grid,
+.my-account-menu .account-grid {
+	display: block;
+	margin: 0 -15px;
+	padding: 15px 0
+}
+
+#my-account-menu .account-grid .item,
+.my-account-menu .account-grid .item {
+	display: block;
+	float: left;
+	padding: 7px 7px;
+	width: 33.333333%;
+	color: #272727;
+	font-size: 12px;
+	font-weight: 400;
+	text-decoration: none!important;
+	text-align: center;
+	text-transform: uppercase
+}
+
+#my-account-menu .account-grid .item .wrapper,
+.my-account-menu .account-grid .item .wrapper {
+	display: block
+}
+
+#my-account-menu .account-grid .item .wrapper img,
+.my-account-menu .account-grid .item .wrapper img {
+	display: block;
+	width: 30px;
+	margin: 0 auto 9px
+}
+
+#my-account-menu .account-grid .item .wrapper .text,
+.my-account-menu .account-grid .item .wrapper .text {
+	display: block;
+	font-size: inherit;
+	color: inherit
+}
+
+#my-account-menu .account-grid .item.active,
+.my-account-menu .account-grid .item.active {
+	color: #8c3141;
+	font-weight: 600
+}
+
+#my-account-menu .account-grid .item:hover,
+.my-account-menu .account-grid .item:hover {
+	color: #8c3141
+}
+
+#my-account-menu .account-links,
+.my-account-menu .account-links {
+	display: block;
+	list-style-type: none;
+	margin: 0;
+	padding: 0
+}
+
+#my-account-menu .account-links>li,
+.my-account-menu .account-links>li {
+	display: block;
+	font-size: 14px;
+	color: #272727;
+	font-weight: 400;
+	padding: 9px 0;
+	border-top: 1px solid #f6f6f6
+}
+
+#my-account-menu .account-links>li a,
+.my-account-menu .account-links>li a {
+	display: block;
+	font-size: inherit;
+	font-weight: inherit;
+	color: inherit;
+	text-decoration: none!important
+}
+
+#my-account-menu .account-links>li:hover,
+.my-account-menu .account-links>li:hover {
+	color: #695aff
+}
+
+#my-account-menu .account-links>li.active,
+.my-account-menu .account-links>li.active {
+	color: #695aff;
+	font-weight: 600
+}
+
+#my-account-menu-backdrop,
+.my-account-menu-backdrop {
+	display: block;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: none;
+	z-index: 1
+}
+
+#my-account-menu-backdrop.show,
+.my-account-menu-backdrop.show {
+	display: block
+}
+
+.my-account-menu-backdrop {
+	z-index: 1002
+}
+.table{
+    color: #292D2F;
+    font-size: 15px !important;
+    margin-bottom: 0rem !important;
+}
+.card-body{
+	padding: 0;
+}
+
+
+.remove-from-wishlist{
+	position: absolute;
+    top: -20px;
+    right: -20px;
+    cursor: pointer;
+}
+
+.remove-from-wishlist .fa-times{
+	font-size: 20px;
+    border-radius: 40px;
+    background: #faeaa7;
+    padding: 10px 12px;
+    color: #000;
+}
+.wishlist .card-body{
+	padding: 1rem;
+}
+
+.profile-letter{
+	border: 3px solid #8c3141;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+}
+.profile-letter h2{
+	margin: auto;
+	padding-top: 0;
+}
+@media(max-width: 480px){
+	.profile-letter{
+		width: 45px;
+    	height: 45px;
+	}
+	
+
+}
+
+/*.card{
+  width: 25rem;
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 4px 4px 15px rgba(#000, 0.15);
+  position : relative;
+  color: #434343;
+}*/
+
+/*.card .card__container{
+  padding : 2rem;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 1rem;
+  position: relative;
+}*/
+
+
+/*.card::before{
+  position: absolute;
+  top:2rem;
+  right:-0.5rem;
+  content: '';*/
+  /*background: #283593;*/
+  /*height: 28px;*/
+  /*width: 28px;*/
+  /*transform : rotate(45deg);*/
+/*}
+*/
+/*.card::after{
+  position: absolute;
+  content: attr(data-label);
+  top: 0px;
+  right: 0px;
+  padding: 0.5rem;
+  width: 7rem;
+  background: #3949ab;
+  color: white;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 4px 4px 15px rgba(26, 35, 126, 0.2);
+}*/
+
+.price-box { position:relative;}
+.ribbon{width:188px;height:188px;position:absolute;top:-8px;right:-8px;overflow:hidden;text-transform:uppercase;color:#fff; font-size:18px;}
+.ribbon:before,.ribbon:after{content:"";position:absolute}
+.ribbon:before{width:40px;height:8px;right:100px;background:#4A0303;border-radius:8px 8px 0 0}
+.ribbon:after{width:8px;height:40px;right:0;top:100px;background:#4A0303;border-radius:0 8px 8px 0}
+.ribbon span {width:200px;height:40px;line-height:40px;position:absolute;top:30px;right:-50px;z-index:2;overflow:hidden;-webkit-transform:rotate(45deg);transform:rotate(45deg);background: red; background: linear-gradient(#F70505 0%, #8F0808 100%);text-align:center}
+
