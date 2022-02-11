@@ -17,11 +17,12 @@ use Carbon\Carbon;
 Use Exception;
 use Validator;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Auth;
 
 use File;
 use App\Mail\ExceptionOccured;
 use Mail;
+use Config;
 
 
 class CategoriesController extends Controller
@@ -87,7 +88,6 @@ class CategoriesController extends Controller
 		->orderBy('skus.updated_at','desc')
 		->get()->first();	
 		}
-
 		
 		} catch (RequestException $exception) {
 				
@@ -777,16 +777,18 @@ catch (\Exception $exception) {
         
 
 
-        $categories_data=DB::table('categories')->select('categories.*','departments.id as dept_id','departments.dept_name as dept_name' )
-        ->leftjoin('departments','departments.id','=','categories.department_id')
-        ->orderBy('departments.dept_name','ASC')
-        ->orderBy('categories.name','ASC')
-        ->get();
+	$categories_data=DB::table('categories')->select('categories.*','departments.id as dept_id','departments.dept_name as dept_name' )
+	->leftjoin('departments','departments.id','=','categories.department_id')
+	->orderBy('departments.dept_name','ASC')
+	->orderBy('categories.name','ASC')
+	->get();
 
-        // echo '<pre>'; print_r($categories_data); exit();
-        $pageTitle="Categories";       
-        return view('admin.categories.categories_list', compact('pageTitle','categories_data'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+	// echo '<pre>'; print_r($categories_data); exit();
+	$pageTitle="Categories";   
+	
+	return view('admin.categories.categories_list', compact('pageTitle','categories_data'))  ->with('i', (request()->input('page', 1) - 1) * 5);
+	
+      
     }
 
    
@@ -796,7 +798,9 @@ catch (\Exception $exception) {
         $parent_categories_data=DB::table('categories')->get();
         	// echo '<pre>'; print_r($parent_categories_data); exit();
         $departments_data=Department::orderBy('dept_name','ASC')->get();
-        return view('admin.categories.add_edit_category',compact(['pageTitle','parent_categories_data','departments_data']));
+		
+		return view('admin.categories.add_edit_category',compact(['pageTitle','parent_categories_data','departments_data']));
+	
     }
 
     
@@ -872,8 +876,10 @@ catch (\Exception $exception) {
                 "alteration"=>$request->alteration??0,
                 "sleeve"=>$request->sleeve??0,
             ]  
-        ]); 
-        return redirect('admin/categories')->with('success', "Success! Details are added successfully"); 
+        ]); 		
+
+		return redirect(\GetRolecode::_getRolecode(Auth::user()->role??'').'/categories')->with('success', "Success! Details are added successfully"); 
+	
     }
 
     
@@ -885,12 +891,15 @@ catch (\Exception $exception) {
     	$categories_data=DB::table('categories')->where("id",$cat_id)->get()->first();
     	$departments_data=Department::orderBy('dept_name','ASC')->get();
         $pageTitle="Edit Parent Category";
-        return view('admin.categories.add_edit_category',compact(['pageTitle','categories_data','departments_data']));
+		return view('admin.categories.add_edit_category',compact(['pageTitle','categories_data','departments_data']));
+	
     }
 
     
     public function update_category(Request $request)
     {
+		
+		
         $request->validate([
          'cat_image' => 'image|mimes:jpg,jpeg,png', 
          'size_chart' => 'image|mimes:jpg,jpeg,png', 
@@ -980,7 +989,11 @@ catch (\Exception $exception) {
             ]
             ); 
     
-        return redirect('admin/categories')->with('success', "Success! Details are deleted successfully");
+	
+
+			return redirect(\GetRolecode::_getRolecode(Auth::user()->role??'').'/categories')->with('success', "Success! Details are deleted successfully");
+		
+	
     }
 
     
@@ -998,16 +1011,28 @@ catch (\Exception $exception) {
 
         $departments_data=Department::orderBy('dept_name','ASC')->get();
         $pageTitle="Departments";     
-        $addlink = url('admin/departments/create');  
-        return view('admin.departments.department_list', compact('pageTitle','departments_data','addlink'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+       
+		
+		
+		if(Auth::user()->role==4){		
+			$addlink = url(Config::get('constants.general').'/departments/create'); 
+		}
+		else{		
+			$addlink = url('admin/departments/create');  
+		}
+
+		return view('admin.departments.department_list', compact('pageTitle','departments_data','addlink'))
+		->with('i', (request()->input('page', 1) - 1) * 5);
+		
+      
     }
 
    
     public function create_department()
     {
-        $pageTitle="Add Department";
-        return view('admin.departments.add_edit_department',compact(['pageTitle']));
+		$pageTitle="Add Department";
+		return view('admin.departments.add_edit_department',compact(['pageTitle']));	
+	
     }
 
     
@@ -1024,23 +1049,26 @@ catch (\Exception $exception) {
                 "dept_name"=>$request->dept_name,
                 "dept_slug"=>$request->dept_slug,
             ]  
-        ]); 
-        return redirect('admin/departments')->with('success', "Success! Details are added successfully"); 
+        ]);
+		
+		return redirect(\GetRolecode::_getRolecode(Auth::user()->role??'').'/departments')->with('success', "Success! Details are added successfully"); 	
+
     }
 
     
-    public function edit_department($id)
-    {
+public function edit_department($id)
+{
 
-    	$dep_id=Crypt::decryptString($id);
-    	$departments_data=Department::get()->where("id",$dep_id)->first();
-        $pageTitle="Edit Department";
-        return view('admin.departments.add_edit_department',compact(['pageTitle','departments_data']));
-    }
+	$dep_id=Crypt::decryptString($id);
+	$departments_data=Department::get()->where("id",$dep_id)->first();
+	$pageTitle="Edit Department";		
+	return view('admin.departments.add_edit_department',compact(['pageTitle','departments_data']));
+  
+}
 
     
-    public function update_department(Request $request)
-    {
+public function update_department(Request $request)
+{
         $request->validate([
          'dept_name' => 'required', 
         'dept_slug' => 'required',
@@ -1055,10 +1083,9 @@ catch (\Exception $exception) {
                 "dept_name"=>$request->dept_name,
                 "dept_slug"=>$request->dept_slug,
             ]
-            ); 
-    
-        return redirect('admin/departments')->with('success', "Success! Details are deleted successfully");
-    }
+            );    
+		return redirect(\GetRolecode::_getRolecode(Auth::user()->role??'').'/departments')->with('success', "Success! Details are deleted successfully");
+}
 
     
     public function delete_department($id)

@@ -1,0 +1,74 @@
+@extends('admin.template_v1')
+@section('content')
+@include('admin.pagetitle')
+			
+            <div class="paddingleftright pt-2" >
+            	
+   <div class="row">
+                <div class="col-md-6 card">
+           <div class="p-4 card-body">
+		   
+		   
+		   <form action="{{ route('dropzone.store') }}" id="my-great-dropzone" class="dropzone" method="post" enctype="multipart/form-data">
+ 
+		   
+		   
+            
+                @csrf
+                
+				
+				
+				
+            </form>
+			
+			
+			
+        </div>
+		 </div>
+		<div class="col-md-1"></div>
+		     <div class="col-md-5 card">
+            <div class="p-4 card-body">
+                <h4><b>Instructions:</b> Please Optimize the Images to the Best Performance.(Format:Example NVT 268 1.jpg,NVT 268 2.jpg)</h4>
+            <p>For Optimizing the Images Please <a href="https://imagecompressor.com/" target="_blank">Click Here</a></p>
+              
+            </div>
+        
+        </div>
+		</div>
+
+<div class="row justify-content-between mb-3 mt-5 card">
+    <div class="col-md-8 mt-2">
+<h5 class="d-inline ">Search by Product code</h5>
+</div>
+<div class="col-md-4 mt-2">
+    <form method="post" action="{{url('admin/bulk_images_upload')}}"> 
+        @csrf
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="Search" name="filename" value="">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+  </form>
+  </div>
+  </div>
+<!-- @include('admin.alerts')
+@include('admin.errors') -->
+        <div class="row">
+
+            @foreach(array_slice($images, 0, 29) as $image)
+            <div class="col-md-2 mb-1">
+                <div class="gallery-image">
+                <img src="{{url($image)}}" class="img-fluid" width=100>
+                </div>
+                <div class="pt-2 justify-content-between d-flex p-2 m-0" style="background: #ddd; width: 200px;">
+                <h4 class="d-inline  m-0">{{$image->getFilename()}}</h4>
+                <a href="{{url('admin/bulk_images_upload/delete/'.Crypt::encryptString($image->getFilename()))}}" class="delete m-0" title="Delete" onclick="return confirm('Are you sure to delete this?')"><i class="fas fa-trash-alt"></i></a>
+                </div>
+            </div>
+            @endforeach
+        </div>
+            </div>
+@endsection

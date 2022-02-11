@@ -8,7 +8,7 @@ use Hash;
 use Validator;
 use Auth;
 use Session;
-
+use Config;
 
 class LoginController extends Controller
 {
@@ -76,7 +76,7 @@ class LoginController extends Controller
             return redirect('content/dashboard')->with('success', 'Successfully logged in.');
         }
           else if ($user && $user->is_admin==4) {         
-            return redirect('general/dashboard')->with('success', 'Successfully logged in.');
+            return redirect(Config::get('constants.general').'/dashboard')->with('success', 'Successfully logged in.');
         }
         else{
            
@@ -105,7 +105,7 @@ class LoginController extends Controller
                  return redirect('content/dashboard')->with('success', 'Successfully logged in.');
                 break;
             case '4':
-                 return redirect('general/dashboard')->with('success', 'Successfully logged in.');
+                 return redirect(Config::get('constants.general').'/dashboard')->with('success', 'Successfully logged in.');
                 break;
             default:
 			Auth::logout();

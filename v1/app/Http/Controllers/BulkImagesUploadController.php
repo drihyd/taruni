@@ -96,7 +96,9 @@ class BulkImagesUploadController extends Controller
 
         // echo '<pre>'; print_r($images); exit();
 
-        // return View('admin.bulk_images_upload.dropzone-view',compact('pageTitle'))->with(array('images'=>$images));
+  
+		
+		
         return view('admin.bulk_images_upload.dropzone-view',compact('pageTitle','cat_id'));
     }
      

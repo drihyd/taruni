@@ -17,7 +17,7 @@ use Illuminate\Support\Carbon;
 use App\Mail\OrderDispatched;
 use App\Mail\OrderProcessing;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Mail;
 
@@ -145,7 +145,7 @@ class OrdersController extends Controller
                     ->addColumn('order_no', function($row){
      
                           
-                            $order_no = '<a href="'.URL("admin/order/".Crypt::encryptString($row->order_number)).'">'.$row->order_number.'</a>';
+                            $order_no = '<a href="'.URL(\GetRolecode::_getRolecode(Auth::user()->role??'')."/order/".Crypt::encryptString($row->order_number)).'" class="text text-info"><i>'.$row->order_number.'</i></a>';
                             
                              return $order_no;
                     })
@@ -266,16 +266,23 @@ class OrdersController extends Controller
                     ->addColumn('action', function($row){
      
 
-                    	$btn = '<a title="View Order Details" alt="View Order Details" target="" href="'.url("admin/order/".Crypt::encryptString($row->order_number)).'"><i class="fas fa-shopping-cart"></i></a>&nbsp;&nbsp;';
-						$btn .= '<a title="Print Order" alt="Print Order" target="_new" href="'.url("admin-order-print/".Crypt::encryptString($row->order_number)).'"><i class="fas fa-print"></i></a>&nbsp;&nbsp;';
-						$btn .= '<a onclick="return confirm(\'Are you sure, Check order items from cart?\')" title="Recheck Order Items" alt="Recheck Order Items" href="'.url("admin-order-items-recheck/".$row->order_id).'"><i class="fas fa-check-double"></i></a>';
-                            return $btn;
+                    	$btn = '<a title="View Order Details" alt="View Order Details" target="" href="'.url(\GetRolecode::_getRolecode(Auth::user()->role??'')."/order/".Crypt::encryptString($row->order_number)).'"><i class="fas fa-shopping-cart"></i></a>&nbsp;&nbsp;';
+						$btn .= '<a title="Print Order" alt="Print Order" target="_new" href="'.url(\GetRolecode::_getRolecode(Auth::user()->role??'')."-order-print/".Crypt::encryptString($row->order_number)).'"><i class="fas fa-print"></i></a>&nbsp;&nbsp;';
+						
+						if( isset(Auth::user()->role) && Auth::user()->role==1 ){
+							$btn .= '<a onclick="return confirm(\'Are you sure, Check order items from cart?\')" title="Recheck Order Items" alt="Recheck Order Items" href="'.url("admin-order-items-recheck/".$row->order_id).'"><i class="fas fa-check-double"></i></a>';
+						}
+						   return $btn;
                     })
                     
                     ->rawColumns(['action','order_no','order_date','ship_to_country','ship_to_details','total_items','payments','status'])
                     ->make(true);		
 			}
+			
+			
 			return view('admin.orders.orders_list',compact('pageTitle','type','filter_type','filter_value'));
+			
+			
 		
 		}
 		// public function orders_today(Request $request)
@@ -413,7 +420,7 @@ return $color;
 
 		if($orders_data->order_status== 'placed' && $request->orderStatus == 'placed')
 		{
-			return redirect('admin/order/'.$request->order_number)->with('error', 'Status not updated. Please try again.');
+			return redirect(\GetRolecode::_getRolecode(Auth::user()->role??'').'/order/'.$request->order_number)->with('error', 'Status not updated. Please try again.');
 
 		}else{
 
@@ -471,11 +478,11 @@ else{
 $this->send_order_status_emails($request->orderStatus,$order_number);
 
 
-			return redirect('admin/order/'.$request->order_number)->with('message', 'Successfully update '.$request->orderStatus.' Status');
+			return redirect(\GetRolecode::_getRolecode(Auth::user()->role??'').'/order/'.$request->order_number)->with('message', 'Successfully update '.$request->orderStatus.' Status');
 		
 			}
 			else{
-			 return redirect('admin/order/'.$request->order_number)->with('error', 'Status not updated. Please try again.');
+			 return redirect(\GetRolecode::_getRolecode(Auth::user()->role??'').'/order/'.$request->order_number)->with('error', 'Status not updated. Please try again.');
 			}
 			
 		}

@@ -245,6 +245,7 @@ return [
 		'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
 		'LogActivity' =>App\Helper\LogActivity::class,
 		'RpayOrderInitated' =>App\Helper\RpayOrderInitated::class,
+		'GetRolecode' =>App\Helper\GetRolecode::class,
 		
 		
 

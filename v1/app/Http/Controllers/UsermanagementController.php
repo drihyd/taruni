@@ -212,7 +212,10 @@ class UsermanagementController extends Controller
                 "phone"=>$request->phone??'',
             ]
             );   
-                return redirect('admin/profile')->with('success', "Success! Details are updated successfully");
+			
+			
+			
+                return redirect(\GetRolecode::_getRolecode(Auth::user()->role??'').'/profile')->with('success', "Success! Details are updated successfully");
 
             
         

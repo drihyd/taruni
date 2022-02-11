@@ -1,0 +1,117 @@
+@extends('admin.template_v1')
+@section('content')
+@include('admin.pagetitle')
+@include('admin.alerts')
+@include('admin.errors')
+ <div class="paddingleftright pt-2 pb-5" >
+          <div class="row">
+                     <div class="col-md-12">
+                        <div class="card h-100 mb-3 shadow">
+                          <div class="card-header"><h3 class="text-white">Header Menu</h3></div>
+                          <div class="card-body">
+                            <div class="row">
+
+
+
+
+
+
+
+  @foreach($header_menu as $key => $value)
+  
+  <div class="col-sm-3">
+
+  
+@foreach($value->menu_column_grid as $key1 => $value1)
+
+@if($value1->is_heading=="Yes")
+<div>
+<a href="{{$value1->menu_url??''}}">  <h5 class="d-inline mb-1">{{strtoupper($value1->menu_name??'')}}</h5> </a>
+<div class="edit-delete d-inline pl-2">
+<a href="{{url('admin/menu/edit/'.$value1->id)}}" class="edit mr-2" title="Edit" ><i class="fas fa-xs fa-pen"></i></a>
+<a href="{{url('admin/menu/delete/'.$value1->id)}}" class="delete" title="Delete"  onclick="return confirm('Are you sure to delete this?')"><i class="fas fa-xs fa-trash-alt"></i></a>
+</div>
+</div>
+@else
+
+<ul class="pl-1 mt-1">
+<div>
+<a href="{{$value1->menu_url??''}}">   <li class="d-inline" style="font-size: 14px;">  {{ucwords($value1->menu_name)??''}}</li> </a>
+<div class="edit-delete d-inline pl-1">
+<a href="{{url('admin/menu/edit/'.$value1->id)}}" class="edit mr-1" title="Edit" ><i class="fas fa-xs fa-pen"></i></a>
+<a href="{{url('admin/menu/delete/'.$value1->id)}}" class="delete" title="Delete"  onclick="return confirm('Are you sure to delete this?')"><i class="fas fa-xs fa-trash-alt"></i></a>
+</div>
+</div>
+</ul>
+@endif
+@endforeach
+  
+  </div>
+  
+  @endforeach
+                  
+              </div>
+              </div>
+
+</div>
+                          </div>
+                        </div>
+                  
+                  <div class="row pt-5">
+                     <div class="col-md-12">
+                        <div class="card h-100 mb-3 shadow">
+                          <div class="card-header"><h3 class="text-white">Footer Widget 1</h3></div>
+                          <div class="card-body">
+                            <div class="row">
+
+
+
+
+
+
+
+  @foreach($footer_widget as $key => $value)
+  <div class="col-sm-4">
+
+  @foreach($value->menu_column_grid as $key1 => $value1)
+
+
+@if($value1->is_heading=="Yes")
+<div>
+<a href="{{$value1->menu_url??''}}">  <h5 class="d-inline mb-1">{{strtoupper($value1->menu_name??'')}}</h5> </a>
+<div class="edit-delete d-inline pl-2">
+<a href="{{url('admin/menu/edit/'.$value1->id)}}" class="edit mr-2" title="Edit" ><i class="fas fa-xs fa-pen"></i></a>
+<a href="{{url('admin/menu/delete/'.$value1->id)}}" class="delete" title="Delete"  onclick="return confirm('Are you sure to delete this?')"><i class="fas fa-xs fa-trash-alt"></i></a>
+</div>
+</div>
+@else
+
+<ul class="pl-1 mt-2">
+<div>
+<a href="{{$value1->menu_url??''}}">   <li class="d-inline">  {{ucwords($value1->menu_name)??''}}</li> </a>
+<div class="edit-delete d-inline pl-2">
+<a href="{{url('admin/menu/edit/'.$value1->id)}}" class="edit mr-2" title="Edit" ><i class="fas fa-xs fa-pen"></i></a>
+<a href="{{url('admin/menu/delete/'.$value1->id)}}" class="delete" title="Delete"  onclick="return confirm('Are you sure to delete this?')"><i class="fas fa-xs fa-trash-alt"></i></a>
+</div>
+</div>
+</ul>
+@endif
+
+  @endforeach
+  </div>
+  @endforeach
+
+                    
+                    
+                    
+                  </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                        
+
+
+                      </div>
+
+                  @endsection

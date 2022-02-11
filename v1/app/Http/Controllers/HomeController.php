@@ -39,7 +39,7 @@ public function front_end_homepage()
 		->limit(30)		
 		->get()->unique('slug');
 
-		
+	
 		foreach ($recently_viewed as $key => $value) {
 		$recently_viewed[$key]->images = DB::table('skus')
 		->where('skus.product_id', $value->pid)		

@@ -1,0 +1,218 @@
+<!-- Sidebar -->
+          <nav id="sidebar">
+              <div class="sidebar-header">
+                  <img src="{{ URL::to('assets/admin/img/logo.svg') }}" class="img-fluid">
+              </div>
+
+              <ul class="list-unstyled components">
+                <li class="{{ (request()->is('admin/dashboard')) ? 'active' : '' }}"><a href="{{url('admin/dashboard')}}">Dashboard</a></li>
+
+
+				<li class="">
+				<a href="#catSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categories</a>
+				<ul class="collapse list-unstyled" id="catSubmenu">
+				<li>
+				<a href="{{url('admin/categories')}}">View Categories</a>
+				</li>
+				
+				</ul>
+				</li>
+
+                  <li class="active">
+                      <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Orders</a>
+                      <ul class="collapse list-unstyled" id="ordersSubmenu">
+                          <li class="{{ (request()->is('admin/orders/today')) ? 'active' : '' }}">
+                              <a href="{{url('admin/orders/today')}}" >View All</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Foreign Orders</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Abandoned Carts</a>
+                          </li >
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Abandoned Payments</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Paypal Outbox</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="">
+                      <a href="#cusSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Customers</a>
+                      <ul class="collapse list-unstyled" id="cusSubmenu">
+                          <li class="{{ (request()->is('admin/customers')) ? 'active' : '' }}">
+                              <a href="{{url('admin/customers')}}">View All</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Export</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Loyal Customers</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Wishlists</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Clicks</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="">
+                      <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Products</a>
+                      <ul class="collapse list-unstyled" id="productsSubmenu">
+                          <li class="{{ (request()->is('admin/products')) ? 'active' : '' }}">
+                              <a href="{{url('admin/products')}}">View All</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Filter</a>
+                          </li>
+                          
+                          <li class="{{ (request()->is('admin/parent_attributes')) ? 'active' : '' }}"> 
+                              <a href="{{url('admin/parent_attributes')}}">Parent Attributes</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/attributes')) ? 'active' : '' }}">
+                              <a href="{{url('admin/attributes')}}">Attributes</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Recommended</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Update $ Price</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <!-- <li class="">
+                      <a href="#uploadSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Bulk Upload</a>
+                      <ul class="collapse list-unstyled" id="uploadSubmenu">
+                          <li>
+                              <a href="#">Downlaod XLSX File</a>
+                          </li>
+                          <li>
+                              <a href="#">Upload Bulk Data</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/bulk_images_upload')}}">Bulk Image Upload</a>
+                          </li>
+                          <li>
+                              <a href="#">Upload Postal Codes</a>
+                          </li>
+                      </ul>
+                  </li> -->
+
+                  <li class="">
+                      <a href="#masterSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Masters Data</a>
+                      <ul class="collapse list-unstyled" id="masterSubmenu">
+                          
+                          <li class="{{ (request()->is('admin/shipping_rates')) ? 'active' : '' }}">
+                              <a href="{{url('admin/shipping_rates')}}">Shipping Rates</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Shipping Times</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Countries</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">States</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Cities</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Upload Postal Codes</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="">
+                      <a href="#promotionsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Promotions</a>
+                      <ul class="collapse list-unstyled" id="promotionsSubmenu">
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Contest</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/coupons')) ? 'active' : '' }}">
+                              <a href="{{url('admin/coupons')}}">Coupons</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/underconstruction')) ? 'active' : '' }}">
+                              <a href="{{url('admin/underconstruction')}}">Discounts</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Content & Pages</a>
+                      <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li class="{{ (request()->is('admin/banners')) ? 'active' : '' }}">
+                              <a href="{{url('admin/banners')}}">Homepage Featured</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/testimonials')) ? 'active' : '' }}">
+                              <a href="{{url('admin/testimonials')}}">Testimonials</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/pages')) ? 'active' : '' }}">
+                              <a href="{{url('admin/pages')}}">Pages</a>
+                          </li>
+                          <li class="{{ (request()->is('admin/faqs')) ? 'active' : '' }}">
+                              <a href="{{url('admin/faqs')}}">FAQs</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="#settingsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Settings</a>
+                      <ul class="collapse list-unstyled" id="settingsSubmenu">
+                        <li class="{{ (request()->is('admin/faqs')) ? 'active' : '' }}">
+                              <a href="{{url('admin/menu')}}">Menus</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/theme_options')}}">Theme Options</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/users')}}">Users</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="#reportSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports & Analytics</a>
+                      <ul class="collapse list-unstyled" id="reportSubmenu">
+                        <li>
+                              <a href="{{url('admin/underconstruction')}}">Order Analytics</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/underconstruction')}}">Cart Analytics</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/underconstruction')}}">Stock Reports</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/underconstruction')}}">Product Report</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/underconstruction')}}">Monthly Reports</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/underconstruction')}}">Monitor Stock</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/underconstruction')}}">Color Report</a>
+                          </li><li>
+                              <a href="{{url('admin/underconstruction')}}">Order Location Report</a>
+                          </li><li>
+                              <a href="{{url('admin/underconstruction')}}">Inventory Age</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="#leadsmubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Leads</a>
+                      <ul class="collapse list-unstyled" id="leadsmubmenu">
+                        <li>
+                              <a href="{{url('admin/support_leads')}}">Feedback</a>
+                          </li>
+                          <li>
+                              <a href="{{url('admin/contacts')}}">Contacts leads</a>
+                          </li>
+                      </ul>
+                  </li>
+				  
+				  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('admin.logout')}}">Logout</a></li>
+                  
+              </ul>
+
+          </nav>

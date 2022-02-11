@@ -1,0 +1,262 @@
+<html class="no-js" lang>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Taruni</title>
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <meta name="robots" content="noodp">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,700;0,900;1,500&display=swap" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+      <link rel="stylesheet" href="./css/global.css">
+      <link rel="stylesheet" href="./css/login.css">
+
+      
+   </head>
+   <body style="background: #FFFFFF">
+    <header class="main-header">
+      <div class="container">
+        <div class="text-center mt-3">
+          <a href="index.html"><img src="./img/logo.svg" alt="Taruni Logo" class="img-fluid nav-logo"></a>
+        </div>
+        <div class="cart-wrapper">
+            <!-- <div class="search-container">
+              <form action="/search" method="get">
+                <input class="search" id="searchleft" type="search" name="q" placeholder="Search">
+                <label class="button searchbutton" for="searchleft"><span class="mglass">&#9906;</span></label>
+              </form>
+            </div> -->
+              <a href="" class="mr-2"><img src="./img/search.svg" alt="search" class="img-fluid"></a>
+              <a href="" class="mr-2"><img src="./img/cart.svg" alt="Cart" class="img-fluid"></a>
+              <a href=""><img src="./img/wishlist.svg" alt="wishlist" class="img-fluid"></a>
+        </div>
+         <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Women <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Kids</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Accessories</a>
+                  </li>
+                  <div class="account-wrapper">
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">My Account</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Help</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                  </li>
+                  </div>
+                </ul>
+              </div>
+      </nav>
+      </div>
+    </header>
+
+    <section class="info sec-login">
+      <div class="container">
+        <form action="" class="needs-validation" novalidate>
+            <div class="form-container">
+              <h2 class="form-title">
+                <hr>
+                <span>Sign Up</span>
+              </h2>
+
+              <div class="form-title-small"><span>Using</span></div>
+
+              <div class="form-social-wrap form-inline">
+                <button class="btn btn-default default-facebook btn-block with-icon"><i class="fab fa-facebook-square icon facebook"></i>Facebook</button>
+                <button href="" class="btn btn-default default-google btn-block mt-4 with-icon"><i class="fab fa-google icon google"></i>Gmail</button>
+              </div>
+
+              <div class="form-title-small"><hr><span>OR</span></div>
+
+              <div class="form-wrap">
+                <div class="row">
+                    <div class="col">
+                        <label for="log-email">Firstname</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="phone" value="" placeholder="Firstname" required>
+                          </div>
+                    </div>
+                    <div class="col">
+                        <label for="log-email">Lastname</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="phone" value="" placeholder="Lastname" required>
+                          </div>
+                    </div>
+                </div>
+                <label for="log-email">Enter Email</label>
+                <div class="form-group">
+                  <input type="email" class="form-control" id="log-email" value="" placeholder="Email" required>
+                  <span class="valid-feedback">Looks good!</span>
+                  <span class="invalid-feedback"> choose a username.</span>
+                </div>
+
+                <label for="log-email">Enter Password</label>
+                <div class="form-group pass_show">
+                  <input type="password" class="form-control" id="log-password" value="" placeholder="Password" required>
+                </div>
+
+                <label for="log-email">Confirm Password</label>
+                <div class="form-group pass_show">
+                  <input type="password" class="form-control" id="log-password" value="" placeholder="Password" required>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="log-email">Select Gender</label>
+                        <div class="form-group">
+                            <select class="form-control custom-select" name="" id="" required>
+                                <option value="" selected disabled>Gender</option>
+                                <option value="">Male</option>
+                                <option value="">Female</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="col">
+                        <label for="log-email">Mobile number</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="phone" value="" placeholder="Phone" required>
+                          </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-brand btn-block mt-4">Log in to Continue</button>
+                <div class="row m-0 justify-content-center mt-3">
+                  <span class="text-small text-right">Already have an account?
+                    <a href="./login.html" class="cta">Log In!</a></span>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        
+      </div>
+    </section>
+    
+
+    
+    <section class="bg-footer footer-sec footer-divider pb-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="wrapper mb-4">
+              <h4 class="text-dark">Categories</h4>
+              <p><a href="#">Ready to wear</a></p>
+              <p><a href="#">Lehangas</a></p>
+              <p><a href="#">Kurtis</a></p>
+              <p><a href="#">Leggins & Bottoms</a></p>
+              <p><a href="#">Accessories</a></p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="wrapper mb-4">
+              <h4 class="text-dark">Collections</h4>
+              <p><a href="#">Summer Wear</a></p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="wrapper mb-4">
+              <h4 class="text-dark">Lookbooks</h4>
+              <p><a href="#">Lookbooks</a></p>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="wrapper mb-4">
+              <h4 class="text-dark">Help</h4>
+              <p><a href="#">Blog</a></p>
+              <p><a href="#">Locations</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="social-links">
+          <p>
+            <a href="" class="facebook-link">Facebook</a> | 
+            <a href="" class="instagram-link">Instagram</a> |
+            <a href="" class="twitter-link">Twitter</a> |
+            <a href="" class="pinterest-link">Pinterest</a> |
+            <a href="" class="youtube-link">Youtube</a> 
+          </p>
+        </div>
+        <div>
+          <p class="small">&copy; Copyright Taruni 2021</p>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+      $('.look-slider').slick({
+
+            slidesToShow: 4, 
+
+            slidesToScroll: 1,
+
+            swipeToSlide: true,
+
+            autoplay: false,
+
+            dots: false,
+
+            arrows:false,
+
+            responsive: [
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false
+              }
+            }
+          ]
+
+           });
+      $('.productslike-slider').slick({
+
+            slidesToShow: 4, 
+
+            slidesToScroll: 1,
+
+            swipeToSlide: true,
+
+            autoplay: false,
+
+            dots: false,
+
+            arrows:false,
+
+            responsive: [
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false
+              }
+            }
+          ]
+
+           });
+    </script>
+
+   </body>
+</html>

@@ -1,0 +1,168 @@
+@extends('frontend.template_v1')
+@section('title', 'Home')
+@section('content')
+@php
+
+
+
+
+$list_banners = DB::table('project_photos')->orderBy('sorting', 'ASC')->get()->where("project_id",0)->where('type','banner')->where('is_show','yes'); 
+$testimonials = DB::table('testimonials')->get();
+
+
+
+
+$fashionjournals_data=DB::table('fashionjournals')->get();
+
+  
+
+
+@endphp
+<section class="pb-0">
+      <div class="container">
+        <div class="banner-slider">
+          @if($list_banners)
+          @foreach($list_banners as $banner)
+        <div>
+          <div class="slider-wrapper">
+            <a href="{{$banner->banner_url??''}}">
+            <img src="{{ URL::to('assets/uploads/'.$banner->image??'')}}" class="img-fluid" alt="Banner image" width="100%"></a>
+          </div>
+        </div>
+        @endforeach
+        @endif
+        
+      </div>
+      <div class="row highlights-row mt-3">
+        <div class="col-sm-4 highlights-divider first">
+          <div class="wrapper">
+            <h3>FREE<br>SHIPPING</h3>
+          </div>
+        </div>
+        <div class="col-sm-4 highlights-divider second">
+          <div class="wrapper">
+		  
+		  @if(session()->get('appcurrency')=="INR")		  
+		  
+            <p class="mb-0" >ACROSS INDIA</p><hr>
+             
+                <p class="mb-0">FOR ORDERS ABOVE {{session()->get('appcurrency')}} {{$shipping_rates->ending_price??1000}}
+            </p>
+			
+			@else 
+				 <p class="mb-0">FOR ORDERS</p>
+			 <hr>
+			 <p class="mb-0">{{session()->get('appcurrency')}} {{$shipping_rates->ending_price??175}} & ABOVE 
+			@endif
+          </div>
+        </div>
+        <!-- <div class="col-sm-4 highlights-divider">
+          <div class="wrapper text-center">
+            <h3>NEW USERS<br>WELCOME CODE: WLCM10</h3>
+          </div>
+        </div> -->
+        <div class="col-sm-4 highlights-divider last">
+          <div class="wrapper text-center">
+            <h3>ALTERATIONS &<br>CUSTOMIZATION</h3>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    
+	
+	@if($recently_viewed->count()>0)
+	@include('frontend.new_arrivals')
+	@endif
+	
+	
+    
+	
+	
+
+    <section class="pb-0 card-sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="wrapper mb-4">
+              <div class="card-img" style="background: url({{ URL::to('images/mix_and_match.jpg') }})top center no-repeat;background-size: cover;height: 500px;">
+                <div class="card-content">
+                  <h1 class="text-bright">MIX<br> & <br>MATCH</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="wrapper mb-4">
+              <div class="card-img" style="background: url({{ URL::to('images/look_book.jpg') }})top center no-repeat;background-size: cover;height: 500px;">
+                <div class="card-content">
+                  <h1 class="text-bright">LOOK<br>BOOK</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="wrapper mb-4">
+              <div class="card-img" style="background: url({{ URL::to('images/whats_in_now.jpg') }})top center no-repeat;background-size: cover;height: 500px;">
+                <div class="card-content">
+                  <h1 class="text-bright">WHAT'S<br>IN <br>NOW</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="shopnow-container text-center">
+          <a href="#" class="shopnow-btn">SHOP NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="fashion-jouranl-sec">
+      <div class="container">
+        <h3>Fashion Journals</h3>
+        <div class="journal-slider">
+          @foreach($fashionjournals_data as $fashionjournals)
+          <div>
+            <a href="{{$fashionjournals->link??''}}">
+            <div class="row">
+              <div class="col-sm-6 pr-md-0">
+                <div class="wrapper mobile-image" style="background: url({{ URL::to('assets/uploads/'.$fashionjournals->image??'') }}) center center no-repeat; background-size: cover; height: 100%">
+                </div>
+              </div>
+              <div class="col-sm-6 pl-md-0">
+                <div class="wrapper p-sm-5 p-4 bg-bright">
+                  <h4>"{{$fashionjournals->title}}"</h4>
+                  <P>{{date('d M, Y', strtotime($fashionjournals->date??''))}}</P>
+                  <p class="mt-4">{{$fashionjournals->description??''}}</p>
+                </div>
+              </div>
+            </div>
+            </a>
+          </div>
+          @endforeach
+        </div>
+        
+      </div>
+    </section>
+
+    <section class="testimonial-sec">
+      <div class="container">
+        <h3 class="text-center">Testimonials</h3>
+        <div class="testimonial-slider mt-4" id="testimonials">
+          @if($testimonials)
+          @foreach($testimonials as $testimonial)
+          <div>
+            <div class="slider-wrapper text-center">
+              <img src="{{ URL::to('assets/uploads/'.$testimonial->image??'') }}" class="img-fluid m-auto" alt="Banner image" style="max-width: 100px;
+    width: 100%;
+    border-radius: 50%;">
+              <p class="mt-3">{{$testimonial->description??''}}</p>
+              <p>- {{ucwords($testimonial->name)??''}}</p>
+            </div>
+          </div>
+          @endforeach
+          @endif
+        </div>
+      </div>
+    </section>
+@endsection

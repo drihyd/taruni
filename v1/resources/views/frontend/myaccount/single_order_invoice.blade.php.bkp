@@ -1,0 +1,169 @@
+@extends('frontend.template_v1')
+@section('content')
+
+@php
+$theme_options_data=DB::table('themeoptions')->get()->first();
+@endphp
+  <style>
+         p{
+            color: #000;
+         }
+         body{
+            color: #000;
+			background:#fff;
+			
+         }
+         .customdatatable {
+             border: 1px solid #ddd !important;
+         }
+		 
+		 
+		 
+		 
+      </style>
+<section class="p-0">
+      <div class="container-fluid">
+	  
+	  			  <div class="row hidden-print">
+         <div class="col-sm-12">
+            <button id="printInv"  onClick="window.print();" class="btn btn-danger btn-sm">Print Invoice</button> &nbsp; 
+         </div>
+		 
+		
+        </div>     
+	  
+         <div class="row">
+		 
+		  <div class="col-sm-6">
+
+			
+               <img src="{{URL::to('assets/uploads/'.$theme_options_data->header_logo??'')}}" width="150" style="margin-top: 8px;float: left;">
+             
+            </div>
+		 
+            <div class="col-sm-6 text-align-right">
+
+			
+              
+               
+               <p class="ml-3" style="display: inline-block;">
+                   <em>Taruni Clothing Pvt Ltd Malani Excel<br>
+                   10-3-150 $151,St.Johns Road,<br>
+                   Beside Ratnadeep Sup. Market,<br>
+                   Secunderabad, Telangana -500026</em>
+               </p>
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-sm-12">
+               <p>GSTIN: 36AACCT8644E1Z8 [ Telangana (36) ]</p>
+               <p>PH#9492021805</p>
+            </div>
+         </div>
+         <div class="row mt-4">
+            <div class="col-sm-6">			  
+			  <p class="small"><strong>Ship to</strong>:</p>
+			  <h4>{{Str::title($orders_data->ship_to_name??'')}}</h4>
+              <p> 
+				{{Str::title($orders_data->ship_to_email??'')}}<br>
+				{{Str::title($orders_data->ship_to_phone??'')}}<br>
+				{{Str::title($orders_data->ship_to_address??'')}}<br>
+				{{Str::title($orders_data->ship_to_city??'')}} - {{Str::title($orders_data->ship_to_postalcode??'')}}<br>
+				{{Str::title($orders_data->ship_to_state??'')}}, {{Str::title($orders_data->ship_to_country??'')}}
+			  </p>
+			  
+            </div>
+         
+
+            <div class="col-sm-6">
+              <p class="small"><strong>Bill to:</strong></p>
+              <p> 
+				{{Str::title($orders_data->bill_to_name??'')}}<br>
+				{{Str::title($orders_data->bill_to_email??'')}}<br>
+				{{Str::title($orders_data->bill_to_phone??'')}}<br>
+				{{Str::title($orders_data->bill_to_address??'')}}<br>
+				{{Str::title($orders_data->bill_to_city??'')}} - {{Str::title($orders_data->bill_to_postalcode??'')}}<br>
+				{{Str::title($orders_data->bill_to_state??'')}}, {{Str::title($orders_data->bill_to_country??'')}}
+			  </p>
+            </div>
+    </div>
+         <hr>
+         <div class="row">
+            <div class="col-sm-12">
+                <b>Order Number: {{$orders_data->order_number??''}}</b>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+         <div class="col-sm-12">
+            <h4><strong>Payment Status - {{$orders_data->payment_status??''}}<br>
+            Payment Mode: {{$orders_data->gateway_name??''}}</strong></h4>
+            <div class="table ">
+               <table class="table table-bordered">
+                  <thead>
+                     <tr>
+                         <th>Product Details</th>
+                         <th align="right">Unit Price</th>
+                         <th>Discount Percentage</th>
+                         <th>Quantity</th>
+                         <th align="right">Net Price</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+				  
+				   @foreach($order_items as $item)
+                     <tr>
+                      <td>
+                         {{Str::ucfirst($item->pname??'')}}<br> SKU Code: {{$item->sku_code??''}} | Size: {{strtoupper($item->item_size)??''}}
+                      </td>
+                      <td align="right">INR {{$item->unit_price??''}}</td>
+                      <td align="center">0 %</td>
+                      <td align="right">1</td>
+                      <td align="right">INR {{$item->price??''}}</td>
+                  </tr>
+				  
+				   @endforeach
+                  <tr>        
+                    <td colspan="3" style="text-align:right;"><strong>Total</strong></td>
+                    <td class="total-num">{{$order_items->sum('qty')}} items items</td>
+                    <td class="total-sum" style="text-align: right"><strong>INR {{$order_items->sum('price')}}</strong></td>
+                  </tr>
+                  <tr>      
+                    <td colspan="3" style="text-align:right;"><strong>Total Weight</strong></td>
+                    <td class="toal-num">8 KG(s)</td>
+                    <td class="total-sum" style="text-align: right"></td>
+                  </tr>
+                  <tr>      
+                    <td colspan="3" style="text-align:right;"><strong>Total Shipping Cost for Cupertino</strong></td>
+                    <td class="toal-num"></td>
+                    <td class="total-sum" style="text-align: right"><strong> INR 0.00</strong></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" style="text-align:right;"><strong>Tax for Cupertino</strong></td>
+                    <td class="toal-num">0 %</td>
+                    <td class="total-sum" style="text-align: right"><strong>INR 0.00</strong></td>
+                  </tr>
+                  <tr>     
+                    <td colspan="3" style="text-align:right;"><strong>Grand Total</strong></td>
+                    <td class="toal-num"></td>
+                    <td class="total-sum" style="text-align: right"><strong>INR {{$order_items->sum('price')}}</strong></td>
+                  </tr>
+                  </tbody>
+               </table>
+            </div>
+            <br>
+         
+       
+         </div>
+        </div>
+        <div class="row hidden-print">
+         <div class="col-sm-12">
+            <button id="printInv"  onClick="window.print();" class="btn btn-danger btn-sm">Print Invoice</button> &nbsp; 
+         </div>
+		 
+		
+        </div>
+      </div>
+   </section>
+   
+   @endsection

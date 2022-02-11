@@ -1,0 +1,16 @@
+[15-Dec-2021 02:37:14 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct('view')
+#1 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build('view')
+#2 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('view', Array)
+#5 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container. in /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
+[15-Dec-2021 02:37:14 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php:877
+Stack trace:
+#0 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(877): ReflectionClass->__construct('view')
+#1 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(758): Illuminate\Container\Container->build('view')
+#2 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php(694): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('view', Array)
+#5 /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container. in /home2/tarunipo/public_html/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 879
